@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Tic Tac Toe</title>
+        <link rel="stylesheet" type="text/css" href="tictactoe.css">
+        
+    </head>
+    <body>
+        <div id = "main">
+            <h1> Tic Tac Toe </h1>
+            <h3 id = "info"> X goes first and then O. Click on "Start" to start playing!</h3>
+            <br> 
+            <input type = "text" id = "b1" onclick="b1_func(); main_func();">
+            <input type = "text" id = "b2" onclick="b2_func(); main_func();">
+            <input type = "text" id = "b3" onclick="b3_func(); main_func();">
+            <br>
+            <input type = "text" id = "b4" onclick="b4_func(); main_func();">
+            <input type = "text" id = "b5" onclick="b5_func(); main_func();">
+            <input type = "text" id = "b6" onclick="b6_func(); main_func();">
+            <br>
+            <input type = "text" id = "b7" onclick="b7_func(); main_func();">
+            <input type = "text" id = "b8" onclick="b8_func(); main_func();">
+            <input type = "text" id = "b9" onclick="b9_func(); main_func();">
+            <br><br><br>
+            <input type="button" value = "Start" id = "startButton" onclick = "start_func()">
+            <input type = "button" value = "Reset" onclick = "reset_func()" id = "resetButton">
+            <br><br>
+            <p id = "final"></p>
+            <h2>Scoreboard</h2>
+            <table>
+                <tr>
+                    <td>Player X</td>
+                    <td>Player O</td>
+                    <td>Tie</td>
+                </tr>
+                <tr> 
+                    <td id = "player_x"></td>
+                    <td id = "player_o"></td>
+                    <td id = "tie"></td>
+                </tr>
+                
+            </table>
+            <div id="resetDiv">
+                <input type = "button" value = "Reset Scoreboard" onclick = "reset_scoreboard()" id = "resetScoreboardButton">
+            </div>
+            
+        </div>
+    <script src="tictactoe.js"></script>
+    </body>
+</html>
