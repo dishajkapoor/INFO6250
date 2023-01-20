@@ -1,21 +1,21 @@
 flag = 1;
-// console.log("sdkjb" + localStorage.getItem("X") + typeof localStorage.getItem("X"));
+console.log("sdkjb" + localStorage.getItem("X") + typeof localStorage.getItem("X"));
 
+// reset_func();
 
-
-// if(localStorage.getItem("X") === null){
-//     console.log("Inside")
-//     localStorage.setItem("X", 0)
-//     // document.querySelector('#player_x').innerHTML = localStorage.getItem("X")
-// }
-// if(localStorage.getItem("O") == null){
-//     localStorage.setItem("O", 0)
-//     // document.getElementById("player_o").innerHTML = 0;
-// }
-// if(localStorage.getItem("tie") == null){
-//     localStorage.setItem("tie", 0)
-//     // document.getElementById("tie").innerHTML = 0;
-// }
+if(localStorage.getItem("X") === "NaN"){
+    console.log("Inside")
+    localStorage.setItem("X", 0)
+    // document.querySelector('#player_x').innerHTML = localStorage.getItem("X")
+}
+if(localStorage.getItem("O") === "NaN"){
+    localStorage.setItem("O", 0)
+    // document.getElementById("player_o").innerHTML = 0;
+}
+if(localStorage.getItem("tie") === "NaN"){
+    localStorage.setItem("tie", 0)
+    // document.getElementById("tie").innerHTML = 0;
+}
 
 document.getElementById("player_x").innerText = parseInt(localStorage.getItem("X"));
 document.getElementById("player_o").innerHTML = localStorage.getItem("O")
