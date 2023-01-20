@@ -3,23 +3,23 @@ console.log("sdkjb" + localStorage.getItem("X") + typeof localStorage.getItem("X
 
 // reset_func();
 
-if(localStorage.getItem("X") === "NaN"){
+if(localStorage.getItem("X") === null){
     console.log("Inside")
     localStorage.setItem("X", 0)
     // document.querySelector('#player_x').innerHTML = localStorage.getItem("X")
 }
-if(localStorage.getItem("O") === "NaN"){
+if(localStorage.getItem("O") === null){
     localStorage.setItem("O", 0)
     // document.getElementById("player_o").innerHTML = 0;
 }
-if(localStorage.getItem("tie") === "NaN"){
+if(localStorage.getItem("tie") === null){
     localStorage.setItem("tie", 0)
     // document.getElementById("tie").innerHTML = 0;
 }
 
 document.getElementById("player_x").innerText = parseInt(localStorage.getItem("X"));
-document.getElementById("player_o").innerHTML = localStorage.getItem("O")
-document.getElementById("tie").innerHTML = localStorage.getItem("tie")
+document.getElementById("player_o").innerHTML = parseInt(localStorage.getItem("O"));
+document.getElementById("tie").innerHTML = parseInt(localStorage.getItem("tie"));
 
 document.getElementById("b1").disabled = true;
 document.getElementById("b3").disabled = true;
@@ -31,7 +31,6 @@ document.getElementById("b8").disabled = true;
 document.getElementById("b9").disabled = true;
 document.getElementById("b2").disabled = true;
 document.getElementById("resetButton").disabled = true;
-// document.getElementById("resetScoreboardButton").disabled = true;
 
 function start_func(){
     document.getElementById("b1").disabled = false;
@@ -52,6 +51,15 @@ function start_func(){
 
 
 function scoreboard_update(param){
+    if(localStorage.getItem("X") === null){
+        localStorage.setItem("X", 0)
+    }
+    if(localStorage.getItem("O") === null){
+        localStorage.setItem("O", 0)
+    }
+    if(localStorage.getItem("tie") === null){
+        localStorage.setItem("tie", 0)
+    }
     if (param === "X"){
         var score = parseInt(localStorage.getItem("X"))+1;
         // console.log("score"+ localStorage.getItem("X"))
