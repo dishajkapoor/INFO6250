@@ -265,7 +265,7 @@ function main_func(){
     b9 = document.getElementById("b9").value;
 
     if (b1 == 'X' && b2 == 'X' && b3 == 'X') {
-        document.getElementById('final').innerHTML = "Player X won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
         document.getElementById("b4").disabled = true;
         document.getElementById("b5").disabled = true;
         document.getElementById("b6").disabled = true;
@@ -275,7 +275,7 @@ function main_func(){
         scoreboard_update("X");
     }
     else if (b1 == 'X' && b4 == 'X' && b7 == 'X') {
-        document.getElementById('final').innerHTML = "Player X won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
         document.getElementById("b5").disabled = true;
@@ -285,7 +285,7 @@ function main_func(){
         scoreboard_update("X");
     }
     else if (b7 == 'X' && b8 == 'X' && b9 == 'X'){
-        document.getElementById('final').innerHTML = "Player X won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
@@ -295,7 +295,7 @@ function main_func(){
         scoreboard_update("X");
     }
     else if (b3 == 'X' && b6 == 'X' && b9 == 'X') {
-        document.getElementById('final').innerHTML = "Player X won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -305,7 +305,7 @@ function main_func(){
         scoreboard_update("X");
     }
     else if (b1 == 'X' && b5 == 'X' && b9 == 'X') {
-        document.getElementById('final').innerHTML = "Player X won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -315,7 +315,7 @@ function main_func(){
         scoreboard_update("X");
     }
     else if (b3 == 'X' && b5 == 'X' && b7 == 'X') {
-        document.getElementById('final').innerHTML = "Player X won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -325,7 +325,7 @@ function main_func(){
         scoreboard_update("X");
     }
     else if (b2 == 'X' && b5 == 'X' && b8 == 'X') {
-        document.getElementById('final').innerHTML = "Player X won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
         document.getElementById("b1").disabled = true;
         document.getElementById("b3").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -335,7 +335,7 @@ function main_func(){
         scoreboard_update("X");
     }
     else if (b4 == 'X' && b5 == 'X' && b6 == 'X') {
-        document.getElementById('final').innerHTML = "Player X won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
@@ -346,7 +346,7 @@ function main_func(){
     }
 
     else if (b1 == 'O' && b2 == 'O' && b3 == 'O') {
-        document.getElementById('final').innerHTML = "Player O won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
         document.getElementById("b4").disabled = true;
         document.getElementById("b5").disabled = true;
         document.getElementById("b6").disabled = true;
@@ -356,7 +356,7 @@ function main_func(){
         scoreboard_update("O");
     }
     else if (b1 == 'O' && b4 == 'O' && b7 == 'O') {
-        document.getElementById('final').innerHTML = "Player O won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
         document.getElementById("b5").disabled = true;
@@ -366,7 +366,7 @@ function main_func(){
         scoreboard_update("O");
     }
     else if (b7 == 'O' && b8 == 'O' && b9 == 'O') {
-        document.getElementById('final').innerHTML = "Player O won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
@@ -376,7 +376,7 @@ function main_func(){
         scoreboard_update("O");
     }
     else if (b3 == 'O' && b6 == 'O' && b9 == 'O') {
-        document.getElementById('final').innerHTML = "Player O won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -386,7 +386,7 @@ function main_func(){
         scoreboard_update("O");
     }
     else if (b1 == 'O' && b5 == 'O' && b9 == 'O') {
-        document.getElementById('final').innerHTML = "Player O won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -396,7 +396,7 @@ function main_func(){
         scoreboard_update("O");
     }
     else if (b3 == 'O' && b5 == 'O' && b7 == 'O') {
-        document.getElementById('final').innerHTML = "Player O won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -406,7 +406,7 @@ function main_func(){
         scoreboard_update("O");
     }
     else if (b2 == 'O' && b5 == 'O' && b8 == 'O') {
-        document.getElementById('final').innerHTML = "Player O won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
         document.getElementById("b1").disabled = true;
         document.getElementById("b3").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -416,7 +416,7 @@ function main_func(){
         scoreboard_update("O");
     }
     else if (b4 == 'O' && b5 == 'O' && b6 == 'O') {
-        document.getElementById('final').innerHTML = "Player O won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
@@ -433,10 +433,13 @@ function main_func(){
     }
     else {
         if (flag == 1) {
-            document.getElementById('final').innerHTML = "Player X's turn";
+            console.log("x" + localStorage.getItem("name1"))
+            document.getElementById('final').innerHTML = localStorage.getItem("name1") + "'s (X) turn";
         }
         else {
-            document.getElementById('final').innerHTML = "Player O's turn";
+            console.log("o" + localStorage.getItem("name2"))
+
+            document.getElementById('final').innerHTML = localStorage.getItem("name2") + "'s (O) turn";
         }
     }
 }
