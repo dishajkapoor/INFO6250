@@ -1,10 +1,10 @@
 flag = 1;
-console.log("sdkjb" + localStorage.getItem("X") + typeof localStorage.getItem("X"));
+// console.log("sdkjb" + localStorage.getItem("X") + typeof localStorage.getItem("X"));
 
 // reset_func();
 
 if(localStorage.getItem("X") === null){
-    console.log("Inside")
+    // console.log("Inside")
     localStorage.setItem("X", 0)
     // document.querySelector('#player_x').innerHTML = localStorage.getItem("X")
 }
@@ -16,6 +16,16 @@ if(localStorage.getItem("tie") === null){
     localStorage.setItem("tie", 0)
     // document.getElementById("tie").innerHTML = 0;
 }
+
+if (localStorage.getItem("start_game") === null){
+    localStorage.setItem("start_game", 0)
+}
+
+if (parseInt(localStorage.getItem("start_game")) != 0){
+    document.getElementById("name_one").innerHTML = "";
+    document.getElementById("name_two").innerHTML = "";
+    document.getElementById("enter").innerHTML = "";
+}   
 
 document.getElementById("player_x").innerText = parseInt(localStorage.getItem("X"));
 document.getElementById("player_o").innerHTML = parseInt(localStorage.getItem("O"));
@@ -32,6 +42,29 @@ document.getElementById("b9").disabled = true;
 document.getElementById("b2").disabled = true;
 document.getElementById("resetButton").disabled = true;
 
+console.log ("name 1" + localStorage.getItem("name1") + typeof localStorage.getItem("name1"))
+
+if (localStorage.getItem("name1") === null){
+    localStorage.setItem("name1", "Player")
+}
+
+if (localStorage.getItem("name2") === null){
+    localStorage.setItem("name2", "Player")
+}
+
+    document.getElementById("player_x_name").innerHTML = localStorage.getItem("name1") + "(X)";
+    // document.getElementById("name_one").innerHTML = "";
+    // document.getElementById("name_two").innerHTML = "";
+    // document.getElementById("enter").innerHTML = "";
+
+
+    document.getElementById("player_o_name").innerHTML = localStorage.getItem("name2") + "(O)";
+    // 
+    // }
+// else{
+//     localStorage.setItem("name2", "Player O")
+// }
+
 function start_func(){
     document.getElementById("b1").disabled = false;
     document.getElementById("b3").disabled = false;
@@ -47,6 +80,8 @@ function start_func(){
     document.getElementById("startButton").disabled = true;
 
     document.getElementById("info").innerHTML = "Game Started! Good Luck."
+
+    localStorage.setItem("start_game", parseInt(localStorage.getItem("start_game"))+1)
 }
 
 
@@ -80,6 +115,24 @@ function scoreboard_update(param){
     document.getElementById("player_o").innerHTML = localStorage.getItem("O");  
     document.getElementById("tie").innerHTML = localStorage.getItem("tie");  
 
+}
+
+function enter_name(){
+    name1 = document.getElementById("name1").value;
+    name2 = document.getElementById("name2").value;
+    // console.log(typeof name1 + name2)
+    document.getElementById("name_one").innerHTML = "";
+    document.getElementById("name_two").innerHTML = "";
+    document.getElementById("enter").innerHTML = ""
+    if (name1 != ""){
+        localStorage.setItem("name1", name1)
+        document.getElementById("player_x_name").innerHTML = name1 + "(X)";
+    }
+    
+    if (name2 != ""){
+        localStorage.setItem("name2", name2)
+        document.getElementById("player_o_name").innerHTML = name2 + "(O)";
+    }
 }
 
 function b1_func() {
@@ -396,7 +449,10 @@ function reset_scoreboard() {
     localStorage.setItem("X", 0)
     localStorage.setItem("O", 0)
     localStorage.setItem("tie", 0)
-    reset_func();
+    localStorage.setItem("name1", "Player")
+    localStorage.setItem("name2", "Player")
+    localStorage.setItem("start_game", 0)
+    location.reload();
 }
 
 flag = 1;

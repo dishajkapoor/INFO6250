@@ -16,7 +16,7 @@ h1 {
     text-align: center;
 }
 
-#resetButton, #startButton{
+#resetButton, #startButton, #enterBtn{
     box-sizing: border-box;
     width: 100px;
     border-radius: 6px;
