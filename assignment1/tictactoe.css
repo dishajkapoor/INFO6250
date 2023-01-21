@@ -1,6 +1,7 @@
 h1 {
     color: #d65076;
     font-size: 45px;
+    text-decoration: underline;
 }
 
 #b1, #b2, #b3, #b4, #b5, #b6, #b7, #b8, #b9 {
@@ -58,4 +59,8 @@ table, td{
     border-bottom: 1px solid #ddd;
     margin-left: auto;
     margin-right: auto;
-  } 
+}
+
+#scoreboard {
+    text-decoration: underline;
+}
