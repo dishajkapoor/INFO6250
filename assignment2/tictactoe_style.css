@@ -18,6 +18,7 @@ h1 {
 }
 
 #resetButton, #startButton, #enterBtn{
+    
     box-sizing: border-box;
     width: 100px;
     border-radius: 6px;

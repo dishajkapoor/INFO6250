@@ -11,20 +11,22 @@ var who_won = [];
 var disable_list = [];
 var x_name = "Player";
 var o_name = "Player";
+var start_game = 0;
 
 app.listen(port, () => {
     console.log(`Now listening on port ${port}`); 
    });
 
-app.post('/refreshScoreboard', () => {
+app.get('/refreshScoreboard', (req, res) => {
     storage = []; 
     who_won = [];
     disable_list = [];
     x_name = "Player";
     o_name = "Player";
+    res.send("success");
    });
 
-app.post('/getScores', (req, res) => {
+app.get('/getScores', (req, res) => {
     var x_count = who_won.filter(x => x=="X").length 
     var o_count = who_won.filter(x => x=="O").length       
     var tie_count = who_won.filter(x => x=="tie").length 
@@ -39,8 +41,6 @@ app.post('/getScores', (req, res) => {
 });
 
 app.post('/enterNames', bodyParser.json(), (req, res) => {
-    // names = req.body
-    // console.log(req.body.name1 + "skjdbfhbkdjjk")
     if (req.body.name1 != ""){
         x_name = req.body.name1;
     }
@@ -49,18 +49,16 @@ app.post('/enterNames', bodyParser.json(), (req, res) => {
     }
 });
 
-app.post('/getNames', (req, res) => {
+app.get('/getNames', (req, res) => {
     var response = JSON.stringify({
         "x_name" : x_name,
         "o_name" : o_name
     })
-    // console.log("sdkfjnsf" + response)
     res.send(response);
 });
 
 app.post('/whoWon',bodyParser.json(), function (req, res) {
     storage = req.body
-    // console.log("storage", storage)
 
     if (storage.b1 == 'X' && storage.b2 == 'X' && storage.b3 == 'X') {
         who_won.push("X");

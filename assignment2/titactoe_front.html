@@ -16,24 +16,30 @@
             <br>
             <br> 
             <div id = "playBoard">
-                <input type = "text" id = "b1" onclick="b1_func(); main_func();">
-                <input type = "text" id = "b2" onclick="b2_func(); main_func();">
-                <input type = "text" id = "b3" onclick="b3_func(); main_func();">
+                <div id = "first">
+                    <input type = "text" id = "b1" onclick="b1_func(); main_func();">
+                    <input type = "text" id = "b2" onclick="b2_func(); main_func();">
+                    <input type = "text" id = "b3" onclick="b3_func(); main_func();">
+                </div>
                 <br>
-                <input type = "text" id = "b4" onclick="b4_func(); main_func();">
-                <input type = "text" id = "b5" onclick="b5_func(); main_func();">
-                <input type = "text" id = "b6" onclick="b6_func(); main_func();">
+                <div id = "second">
+                    <input type = "text" id = "b4" onclick="b4_func(); main_func();">
+                    <input type = "text" id = "b5" onclick="b5_func(); main_func();">
+                    <input type = "text" id = "b6" onclick="b6_func(); main_func();">
+                </div>
                 <br>
-                <input type = "text" id = "b7" onclick="b7_func(); main_func();">
-                <input type = "text" id = "b8" onclick="b8_func(); main_func();">
-                <input type = "text" id = "b9" onclick="b9_func(); main_func();">
+                <div id = "third">
+                    <input type = "text" id = "b7" onclick="b7_func(); main_func();">
+                    <input type = "text" id = "b8" onclick="b8_func(); main_func();">
+                    <input type = "text" id = "b9" onclick="b9_func(); main_func();">
+                </div>
                 <br><br>
             </div>
             <section class = "controls">
                 <input type="button" value = "Start" id = "startButton" onclick = "start_func()">
                 <input type = "button" value = "Reset" onclick = "reset_func()" id = "resetButton">
             </section>
-            <br><br>
+            <br>
             <p id = "final"></p>
             <div id = "scoreboardDiv">
                 <h2 id = "scoreboard">Scoreboard</h2>

@@ -31,17 +31,45 @@ if (localStorage.getItem("name2") === null){
 // console.log("kasjsdkj" + localStorage.getItem("start_game"))
 if (parseInt(localStorage.getItem("start_game")) == 0){
     // console.log("first time")
-    document.getElementById("playBoard").style.visibility = "hidden";
-    document.getElementById("resetButton").style.visibility = "hidden";
-    document.getElementById("startButton").style.visibility = "hidden";
-    document.getElementById("scoreboardDiv").style.visibility = "hidden";
+    // document.getElementById("playBoard").style.display = "none";
+    // document.getElementById("b1").style.display = "none";
+    // document.getElementById("b2").style.display = "none";
+    // document.getElementById("b3").style.display = "none";
+    // document.getElementById("b4").style.display = "none";
+    // document.getElementById("b5").style.display = "none";
+    // document.getElementById("b6").style.display = "none";
+    // document.getElementById("b7").style.display = "none";
+    // document.getElementById("b8").style.display = "none";
+    // document.getElementById("b9").style.display = "none";
+    document.getElementById("first").style.display = "none";
+    document.getElementById("second").style.display = "none";
+    document.getElementById("third").style.display = "none";
+
+    document.getElementById("resetButton").style.display = "none";
+    document.getElementById("startButton").style.display = "none";
+    document.getElementById("scoreboardDiv").style.display = "none";
 } 
 else{
-    document.getElementById("nameDiv").style.visibility = "hidden";
+    document.getElementById("nameDiv").style.display = "none";
     get_scores();
     get_names();
-    document.getElementById("resetButton").style.visibility = "hidden";
+    document.getElementById("resetButton").style.display = "none";
     document.getElementById("info").innerHTML = "X goes first and then O. Hit START to start playing."
+    // document.getElementById("playBoard").style.display = "inline"
+    // document.getElementById("b1").style.display = "block";
+    // document.getElementById("b2").style.display = "block";
+    
+    // document.getElementById("b3").style.display = "block";
+    // document.getElementById("b4").style.display = "block";
+    // document.getElementById("b5").style.display = "block";
+    // document.getElementById("b6").style.display = "block";
+    // document.getElementById("b7").style.display = "block";
+    // document.getElementById("b8").style.display = "block";
+    // document.getElementById("b9").style.display = "block";
+
+    document.getElementById("first").style.display = "inline-flex";
+    document.getElementById("second").style.display = "inline-flex";
+    document.getElementById("third").style.display = "inline-flex";
 }
 
 var o_name = "Player";
@@ -52,7 +80,7 @@ myHeaders.append("Content-Type", "application/json");
 
 function get_scores(){
     var requestOptions3 = {
-        method: "POST",
+        method: "GET",
         headers: myHeaders
     };
     fetch ("http://localhost:5000/getScores", requestOptions3)
@@ -63,7 +91,10 @@ function get_scores(){
             document.getElementById("tie").innerHTML = data.tie_count;
         })
         .catch((error) => {
-            console.log(error + "offline game..");
+            console.log(typeof(error) + "offline game..");
+            var a = [];
+            Object.entries(error).forEach(itm=>a.push({key: itm[0], value: itm[1]}));
+            console.log(a);
             document.getElementById("player_x").innerText = parseInt(localStorage.getItem("X"));
             document.getElementById("player_o").innerHTML = parseInt(localStorage.getItem("O"));
             document.getElementById("tie").innerHTML = parseInt(localStorage.getItem("tie"));
@@ -72,7 +103,7 @@ function get_scores(){
 
 function get_names(){
     var requestOptions5 = {
-        method: "POST",
+        method: "GET",
         headers: myHeaders
     };
     fetch("http://localhost:5000/getNames", requestOptions5)
@@ -82,7 +113,7 @@ function get_names(){
             document.getElementById("player_o_name").innerHTML = data2.o_name + "(O)";
         })
         .catch((error) => {
-            console.log(error + "offline game..");
+            console.log(error.body + "offline game..");
             document.getElementById("player_x_name").innerHTML = localStorage.getItem("name1") + "(X)";
             document.getElementById("player_o_name").innerHTML = localStorage.getItem("name2") + "(O)";
         });
@@ -102,6 +133,7 @@ function b1_func() {
     }
 }
 function b2_func() {
+    console.log("kjnf")
     if (flag == 1) {
         document.getElementById("b2").value = "X";
         document.getElementById("b2").disabled = true;
@@ -236,7 +268,6 @@ function who_won_result(data){
     fetch("http://localhost:5000/getNames", requestOptions5)
         .then(async (response) => {
             var data = await response.json();
-            console.log(data +  "]]]]]")
             x_name = data.x_name
             o_name = data.o_name
     })
@@ -273,11 +304,21 @@ function disable_tiles(disable_list){
 
 function reset_func() {
     // location.reload();
-    document.getElementById("startButton").style.visibility = "visible";
-    document.getElementById("resetButton").style.visibility = "hidden";
-    document.getElementById("playBoard").style.visibility = "visible";
-    document.getElementById("nameDiv").style.visibility = "hidden";
-    document.getElementById("scoreboardDiv").style.visibility = "visible";
+    document.getElementById("startButton").style.display = "block";
+    document.getElementById("resetButton").style.display = "none";
+    // document.getElementById("playBoard").style.display = "inline-flex";
+    document.getElementById("nameDiv").style.display = "none";
+    document.getElementById("scoreboardDiv").style.display = "block";
+
+    // document.getElementById("b1").style.display = "block";
+    // document.getElementById("b2").style.display = "block";
+    // document.getElementById("b3").style.display = "block";
+    // document.getElementById("b4").style.display = "block";
+    // document.getElementById("b5").style.display = "block";
+    // document.getElementById("b6").style.display = "block";
+    document.getElementById("first").style.display = "inline-flex";
+    document.getElementById("second").style.display = "inline-flex";
+    document.getElementById("third").style.display = "inline-flex";
 
     document.getElementById("b1").value = "";
     document.getElementById("b2").value = "";
@@ -313,32 +354,56 @@ function start_func(){
     document.getElementById("b8").disabled = false;
     document.getElementById("b9").disabled = false;
     document.getElementById("b2").disabled = false;
-    document.getElementById("resetButton").style.visibility = "visible";
+    document.getElementById("resetButton").style.display = "block";
     document.getElementById("resetButton").disabled = false;
-    document.getElementById("startButton").style.visibility = "hidden";
+    document.getElementById("startButton").style.display = "none";
     document.getElementById("info").innerHTML = "Game Started! Good Luck."
     // localStorage.setItem("start_game", parseInt(localStorage.getItem("start_game"))+1)
 }
 
 function reset_scoreboard(){
     var requestOptions2 = {
-        method: "POST",
+        method: "GET",
         headers: myHeaders
     };
     fetch("http://localhost:5000/refreshScoreboard", requestOptions2)
-        .catch((error) => {
+        
+    .then(async (response) => {
+        // console.log("sjdfh")
+        
+        document.getElementById("resetButton").style.display = "none";
+        document.getElementById("startButton").style.display = "none";
+        document.getElementById("scoreboardDiv").style.display = "none";
+        document.getElementById("nameDiv").style.display = "block"
+        // document.getElementById("playBoard").style.display = "none";
+    //     document.getElementById("b1").style.display = "none";
+    //     document.getElementById("b2").style.display = "none";
+    //     document.getElementById("b3").style.display = "none";
+    // document.getElementById("b4").style.display = "none";
+    // document.getElementById("b5").style.display = "none";
+    // document.getElementById("b6").style.display = "none";
+    // document.getElementById("b7").style.display = "none";
+    // document.getElementById("b8").style.display = "none";
+    // document.getElementById("b9").style.display = "none";
+
+    document.getElementById("first").style.display = "none";
+    document.getElementById("second").style.display = "none";
+    document.getElementById("third").style.display = "none";
+
+    })
+    .catch((error) => {
             localStorage.setItem("X", 0)
             localStorage.setItem("O", 0)
             localStorage.setItem("tie", 0)
             localStorage.setItem("name1", "Player")
             localStorage.setItem("name2", "Player")
+            localStorage.setItem("start_game", 0)
             location.reload();
     });
-    localStorage.setItem("start_game", 0)
 
     get_scores();
     get_names();
-    reset_func();
+    // reset_func();
 }
 
 function play_offline(){
@@ -587,18 +652,23 @@ function enter_name(){
     });
     get_names();
 
-    document.getElementById("b1").style.visibility = "visible";
-    document.getElementById("b3").style.visibility = "visible";
-    document.getElementById("b4").style.visibility = "visible";
-    document.getElementById("b5").style.visibility = "visible";
-    document.getElementById("b6").style.visibility = "visible";
-    document.getElementById("b7").style.visibility = "visible";
-    document.getElementById("b8").style.visibility = "visible";
-    document.getElementById("b9").style.visibility = "visible";
-    document.getElementById("b2").style.visibility = "visible";
-    document.getElementById("startButton").style.visibility = "visible";
-    document.getElementById("scoreboardDiv").style.visibility = "visible";
-    document.getElementById("nameDiv").style.visibility = "hidden";
+    // document.getElementById("b1").style.display = "block";
+    // document.getElementById("b3").style.display = "block";
+    // document.getElementById("b4").style.display = "block";
+    // document.getElementById("b5").style.display = "block";
+    // document.getElementById("b6").style.display = "block";
+    // document.getElementById("b7").style.display = "block";
+    // document.getElementById("b8").style.display = "block";
+    // document.getElementById("b9").style.display = "block";
+    // document.getElementById("b2").style.display = "block";
+
+    document.getElementById("first").style.display = "inline-flex";
+    document.getElementById("second").style.display = "inline-flex";
+    document.getElementById("third").style.display = "inline-flex";
+
+    document.getElementById("startButton").style.display = "block";
+    document.getElementById("scoreboardDiv").style.display = "block";
+    document.getElementById("nameDiv").style.display = "none";
     document.getElementById("info").innerHTML = "X goes first and then O. Hit START to start playing!"
 
     get_scores();
