@@ -384,7 +384,7 @@ function reset_scoreboard(){
     document.getElementById("b8").value = "";
     document.getElementById("b9").value = "";
     document.getElementById("final").innerHTML = "";
-    document.getElementById("info").innerHTML = "X goes first and then O. Hit START to start playing!"
+    document.getElementById("info").innerHTML = "Enter your names and hit ENTER!"
     flag = 1;
 
     document.getElementById("b1").disabled = true;
