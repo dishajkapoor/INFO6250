@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>Tic Tac Toe</title>
+        <link rel="stylesheet" type="text/css" href="tictactoe_style.css">
+        
+    </head>
+    <body>
+        <div id = "main">
+            <h1> Tic Tac Toe </h1>
+            <h3 id = "info">Please enter your names and hit enter.</h3>
+            <div id = "nameDiv">
+                <p> Name of Player X: &nbsp &nbsp<input type = "text" id = "name1"> </p>
+                <p> Name of Player O: &nbsp &nbsp<input type = "text" id = "name2"> </p>
+                <p id = "enter"><input type="button" value = "Enter" id="enterBtn" onclick="enter_name()";> </p> 
+            </div>
+            <br>
+            <br> 
+            <div id = "playBoard">
+                <input type = "text" id = "b1" onclick="b1_func(); main_func();">
+                <input type = "text" id = "b2" onclick="b2_func(); main_func();">
+                <input type = "text" id = "b3" onclick="b3_func(); main_func();">
+                <br>
+                <input type = "text" id = "b4" onclick="b4_func(); main_func();">
+                <input type = "text" id = "b5" onclick="b5_func(); main_func();">
+                <input type = "text" id = "b6" onclick="b6_func(); main_func();">
+                <br>
+                <input type = "text" id = "b7" onclick="b7_func(); main_func();">
+                <input type = "text" id = "b8" onclick="b8_func(); main_func();">
+                <input type = "text" id = "b9" onclick="b9_func(); main_func();">
+                <br><br>
+            </div>
+            <section class = "controls">
+                <input type="button" value = "Start" id = "startButton" onclick = "start_func()">
+                <input type = "button" value = "Reset" onclick = "reset_func()" id = "resetButton">
+            </section>
+            <br><br>
+            <p id = "final"></p>
+            <div id = "scoreboardDiv">
+                <h2 id = "scoreboard">Scoreboard</h2>
+                <table>
+                    <tr>
+                        <td id = "player_x_name">Player X</td>
+                        <td id = "player_o_name">Player O</td>
+                        <td>Game Tie</td>
+                    </tr>
+                    <tr> 
+                        <td id = "player_x"></td>
+                        <td id = "player_o"></td>
+                        <td id = "tie"></td>
+                    </tr>
+                    
+                </table>
+                <div id="resetDiv">
+                    <input type = "button" value = "Reset Scoreboard" onclick = "reset_scoreboard()" id = "resetScoreboardButton">
+                    <p id = "resetScoreInfo"> Hit RESET SCOREBOARD to reset players' names and scores.</p> 
+                </div>
+            </div>
+        </div>
+    <script src="tictactoe_js.js"></script>
+    
+</body>
+</html>
