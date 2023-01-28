@@ -47,12 +47,20 @@ app.post('/enterNames', bodyParser.json(), (req, res) => {
     if (req.body.name2 != ""){
         o_name = req.body.name2;
     }
+    start_game += 1;
 });
 
 app.get('/getNames', (req, res) => {
     var response = JSON.stringify({
         "x_name" : x_name,
         "o_name" : o_name
+    })
+    res.send(response);
+});
+
+app.get('/getStartGame', (req, res) => {
+    var response = JSON.stringify({
+        "start_game" : start_game
     })
     res.send(response);
 });

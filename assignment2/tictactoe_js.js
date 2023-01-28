@@ -28,49 +28,53 @@ if (localStorage.getItem("name2") === null){
     localStorage.setItem("name2", "Player")
 }
 
-// console.log("kasjsdkj" + localStorage.getItem("start_game"))
-if (parseInt(localStorage.getItem("start_game")) == 0){
-    // console.log("first time")
-    // document.getElementById("playBoard").style.display = "none";
-    // document.getElementById("b1").style.display = "none";
-    // document.getElementById("b2").style.display = "none";
-    // document.getElementById("b3").style.display = "none";
-    // document.getElementById("b4").style.display = "none";
-    // document.getElementById("b5").style.display = "none";
-    // document.getElementById("b6").style.display = "none";
-    // document.getElementById("b7").style.display = "none";
-    // document.getElementById("b8").style.display = "none";
-    // document.getElementById("b9").style.display = "none";
-    document.getElementById("first").style.display = "none";
-    document.getElementById("second").style.display = "none";
-    document.getElementById("third").style.display = "none";
-
-    document.getElementById("resetButton").style.display = "none";
-    document.getElementById("startButton").style.display = "none";
-    document.getElementById("scoreboardDiv").style.display = "none";
-} 
-else{
-    document.getElementById("nameDiv").style.display = "none";
-    get_scores();
-    get_names();
-    document.getElementById("resetButton").style.display = "none";
-    document.getElementById("info").innerHTML = "X goes first and then O. Hit START to start playing."
-    // document.getElementById("playBoard").style.display = "inline"
-    // document.getElementById("b1").style.display = "block";
-    // document.getElementById("b2").style.display = "block";
-    
-    // document.getElementById("b3").style.display = "block";
-    // document.getElementById("b4").style.display = "block";
-    // document.getElementById("b5").style.display = "block";
-    // document.getElementById("b6").style.display = "block";
-    // document.getElementById("b7").style.display = "block";
-    // document.getElementById("b8").style.display = "block";
-    // document.getElementById("b9").style.display = "block";
-
-    document.getElementById("first").style.display = "inline-flex";
-    document.getElementById("second").style.display = "inline-flex";
-    document.getElementById("third").style.display = "inline-flex";
-}
+var requestOptions3 = {
+    method: "GET",
+    headers: myHeaders
+};
+fetch ("http://localhost:5000/getStartGame", requestOptions3)
+    .then(async (response) => {
+        const data = await response.json();
+        if (data.start_game == 0){
+            document.getElementById("first").style.display = "none";
+            document.getElementById("second").style.display = "none";
+            document.getElementById("third").style.display = "none";
+            document.getElementById("resetButton").style.display = "none";
+            document.getElementById("startButton").style.display = "none";
+            document.getElementById("scoreboardDiv").style.display = "none";
+        }
+        else{
+            document.getElementById("nameDiv").style.display = "none";
+            get_scores();
+            get_names();
+            document.getElementById("resetButton").style.display = "none";
+            document.getElementById("info").innerHTML = "X goes first and then O. Hit START to start playing."
+            document.getElementById("first").style.display = "inline-flex";
+            document.getElementById("second").style.display = "inline-flex";
+            document.getElementById("third").style.display = "inline-flex";
+        }
+    })
+    .catch((error) => {
+        console.log(error + "offline game..");
+        if (parseInt(localStorage.getItem("start_game")) == 0){
+            document.getElementById("first").style.display = "none";
+            document.getElementById("second").style.display = "none";
+            document.getElementById("third").style.display = "none";
+            document.getElementById("resetButton").style.display = "none";
+            document.getElementById("startButton").style.display = "none";
+            document.getElementById("scoreboardDiv").style.display = "none";
+        } 
+        else{
+            document.getElementById("nameDiv").style.display = "none";
+            get_scores();
+            get_names();
+            document.getElementById("resetButton").style.display = "none";
+            document.getElementById("info").innerHTML = "X goes first and then O. Hit START to start playing."
+            document.getElementById("first").style.display = "inline-flex";
+            document.getElementById("second").style.display = "inline-flex";
+            document.getElementById("third").style.display = "inline-flex";
+        }
+});
 
 var o_name = "Player";
 var x_name = "Player";
@@ -91,10 +95,10 @@ function get_scores(){
             document.getElementById("tie").innerHTML = data.tie_count;
         })
         .catch((error) => {
-            console.log(typeof(error) + "offline game..");
-            var a = [];
-            Object.entries(error).forEach(itm=>a.push({key: itm[0], value: itm[1]}));
-            console.log(a);
+            console.log(error + "offline game..");
+            // var a = [];
+            // Object.entries(error).forEach(itm=>a.push({key: itm[0], value: itm[1]}));
+            // console.log(a);
             document.getElementById("player_x").innerText = parseInt(localStorage.getItem("X"));
             document.getElementById("player_o").innerHTML = parseInt(localStorage.getItem("O"));
             document.getElementById("tie").innerHTML = parseInt(localStorage.getItem("tie"));
@@ -113,7 +117,7 @@ function get_names(){
             document.getElementById("player_o_name").innerHTML = data2.o_name + "(O)";
         })
         .catch((error) => {
-            console.log(error.body + "offline game..");
+            console.log(error + "offline game..");
             document.getElementById("player_x_name").innerHTML = localStorage.getItem("name1") + "(X)";
             document.getElementById("player_o_name").innerHTML = localStorage.getItem("name2") + "(O)";
         });
@@ -133,7 +137,7 @@ function b1_func() {
     }
 }
 function b2_func() {
-    console.log("kjnf")
+    // console.log("kjnf")
     if (flag == 1) {
         document.getElementById("b2").value = "X";
         document.getElementById("b2").disabled = true;
@@ -260,9 +264,8 @@ function main_func(){
 }
 
 function who_won_result(data){
-    // names = get_names();
     var requestOptions5 = {
-        method: "POST",
+        method: "GET",
         headers: myHeaders
     };
     fetch("http://localhost:5000/getNames", requestOptions5)
@@ -273,17 +276,20 @@ function who_won_result(data){
     })
 
     if (data.who_won[data.who_won.length-1] == "X"){
-        document.getElementById('final').innerHTML = "X ("+ x_name +") won! Please hit RESET to play again.";
+        document.getElementById('final').innerHTML = "X ("+ x_name +") won! ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         disable_tiles(data.disable_list)
         get_scores();
     }        
     else if (data.who_won[data.who_won.length-1] == "O"){
-        document.getElementById('final').innerHTML = "O ("+ o_name +") won! Please hit RESET to play again. ";
+        document.getElementById('final').innerHTML = "O ("+ o_name +") won! ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         disable_tiles(data.disable_list)
         get_scores();
     }
     else if (data.who_won[data.who_won.length-1] == "tie"){
-        document.getElementById('final').innerHTML = "It's a tie. Please hit RESET to play again. ";
+        document.getElementById('final').innerHTML = "It's a tie. ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         get_scores();
     }
     else{
@@ -303,19 +309,10 @@ function disable_tiles(disable_list){
 }
 
 function reset_func() {
-    // location.reload();
     document.getElementById("startButton").style.display = "block";
     document.getElementById("resetButton").style.display = "none";
-    // document.getElementById("playBoard").style.display = "inline-flex";
     document.getElementById("nameDiv").style.display = "none";
     document.getElementById("scoreboardDiv").style.display = "block";
-
-    // document.getElementById("b1").style.display = "block";
-    // document.getElementById("b2").style.display = "block";
-    // document.getElementById("b3").style.display = "block";
-    // document.getElementById("b4").style.display = "block";
-    // document.getElementById("b5").style.display = "block";
-    // document.getElementById("b6").style.display = "block";
     document.getElementById("first").style.display = "inline-flex";
     document.getElementById("second").style.display = "inline-flex";
     document.getElementById("third").style.display = "inline-flex";
@@ -358,7 +355,6 @@ function start_func(){
     document.getElementById("resetButton").disabled = false;
     document.getElementById("startButton").style.display = "none";
     document.getElementById("info").innerHTML = "Game Started! Good Luck."
-    // localStorage.setItem("start_game", parseInt(localStorage.getItem("start_game"))+1)
 }
 
 function reset_scoreboard(){
@@ -369,29 +365,41 @@ function reset_scoreboard(){
     fetch("http://localhost:5000/refreshScoreboard", requestOptions2)
         
     .then(async (response) => {
-        // console.log("sjdfh")
-        
         document.getElementById("resetButton").style.display = "none";
         document.getElementById("startButton").style.display = "none";
         document.getElementById("scoreboardDiv").style.display = "none";
         document.getElementById("nameDiv").style.display = "block"
-        // document.getElementById("playBoard").style.display = "none";
-    //     document.getElementById("b1").style.display = "none";
-    //     document.getElementById("b2").style.display = "none";
-    //     document.getElementById("b3").style.display = "none";
-    // document.getElementById("b4").style.display = "none";
-    // document.getElementById("b5").style.display = "none";
-    // document.getElementById("b6").style.display = "none";
-    // document.getElementById("b7").style.display = "none";
-    // document.getElementById("b8").style.display = "none";
-    // document.getElementById("b9").style.display = "none";
+        document.getElementById("first").style.display = "none";
+        document.getElementById("second").style.display = "none";
+        document.getElementById("third").style.display = "none";
 
-    document.getElementById("first").style.display = "none";
-    document.getElementById("second").style.display = "none";
-    document.getElementById("third").style.display = "none";
+        
+    document.getElementById("b1").value = "";
+    document.getElementById("b2").value = "";
+    document.getElementById("b3").value = "";
+    document.getElementById("b4").value = "";
+    document.getElementById("b5").value = "";
+    document.getElementById("b6").value = "";
+    document.getElementById("b7").value = "";
+    document.getElementById("b8").value = "";
+    document.getElementById("b9").value = "";
+    document.getElementById("final").innerHTML = "";
+    document.getElementById("info").innerHTML = "X goes first and then O. Hit START to start playing!"
+    flag = 1;
+
+    document.getElementById("b1").disabled = true;
+    document.getElementById("b3").disabled = true;
+    document.getElementById("b4").disabled = true;
+    document.getElementById("b5").disabled = true;
+    document.getElementById("b6").disabled = true;
+    document.getElementById("b7").disabled = true;
+    document.getElementById("b8").disabled = true;
+    document.getElementById("b9").disabled = true;
+    document.getElementById("b2").disabled = true;
 
     })
     .catch((error) => {
+            console.log(error + "offline game..");
             localStorage.setItem("X", 0)
             localStorage.setItem("O", 0)
             localStorage.setItem("tie", 0)
@@ -403,7 +411,6 @@ function reset_scoreboard(){
 
     get_scores();
     get_names();
-    // reset_func();
 }
 
 function play_offline(){
@@ -419,7 +426,8 @@ function play_offline(){
     b9 = document.getElementById("b9").value;
 
     if (b1 == 'X' && b2 == 'X' && b3 == 'X') {
-        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won.";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b4").disabled = true;
         document.getElementById("b5").disabled = true;
         document.getElementById("b6").disabled = true;
@@ -429,7 +437,8 @@ function play_offline(){
         scoreboard_update_offline("X");
     }
     else if (b1 == 'X' && b4 == 'X' && b7 == 'X') {
-        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won.";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
         document.getElementById("b5").disabled = true;
@@ -439,7 +448,8 @@ function play_offline(){
         scoreboard_update_offline("X");
     }
     else if (b7 == 'X' && b8 == 'X' && b9 == 'X'){
-        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won.";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
@@ -449,7 +459,8 @@ function play_offline(){
         scoreboard_update_offline("X");
     }
     else if (b3 == 'X' && b6 == 'X' && b9 == 'X') {
-        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -459,7 +470,8 @@ function play_offline(){
         scoreboard_update_offline("X");
     }
     else if (b1 == 'X' && b5 == 'X' && b9 == 'X') {
-        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -469,7 +481,8 @@ function play_offline(){
         scoreboard_update_offline("X");
     }
     else if (b3 == 'X' && b5 == 'X' && b7 == 'X') {
-        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -479,7 +492,8 @@ function play_offline(){
         scoreboard_update_offline("X");
     }
     else if (b2 == 'X' && b5 == 'X' && b8 == 'X') {
-        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b1").disabled = true;
         document.getElementById("b3").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -489,7 +503,8 @@ function play_offline(){
         scoreboard_update_offline("X");
     }
     else if (b4 == 'X' && b5 == 'X' && b6 == 'X') {
-        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player X (" + localStorage.getItem("name1") +") won. ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
@@ -500,7 +515,8 @@ function play_offline(){
     }
 
     else if (b1 == 'O' && b2 == 'O' && b3 == 'O') {
-        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b4").disabled = true;
         document.getElementById("b5").disabled = true;
         document.getElementById("b6").disabled = true;
@@ -510,7 +526,8 @@ function play_offline(){
         scoreboard_update_offline("O");
     }
     else if (b1 == 'O' && b4 == 'O' && b7 == 'O') {
-        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
         document.getElementById("b5").disabled = true;
@@ -520,7 +537,8 @@ function play_offline(){
         scoreboard_update_offline("O");
     }
     else if (b7 == 'O' && b8 == 'O' && b9 == 'O') {
-        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
@@ -530,7 +548,8 @@ function play_offline(){
         scoreboard_update_offline("O");
     }
     else if (b3 == 'O' && b6 == 'O' && b9 == 'O') {
-        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -540,7 +559,8 @@ function play_offline(){
         scoreboard_update_offline("O");
     }
     else if (b1 == 'O' && b5 == 'O' && b9 == 'O') {
-        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -550,7 +570,8 @@ function play_offline(){
         scoreboard_update_offline("O");
     }
     else if (b3 == 'O' && b5 == 'O' && b7 == 'O') {
-        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -560,7 +581,8 @@ function play_offline(){
         scoreboard_update_offline("O");
     }
     else if (b2 == 'O' && b5 == 'O' && b8 == 'O') {
-        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b1").disabled = true;
         document.getElementById("b3").disabled = true;
         document.getElementById("b4").disabled = true;
@@ -570,7 +592,8 @@ function play_offline(){
         scoreboard_update_offline("O");
     }
     else if (b4 == 'O' && b5 == 'O' && b6 == 'O') {
-        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "Player O (" + localStorage.getItem("name2") +") won. ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
@@ -582,31 +605,20 @@ function play_offline(){
     else if ((b1 == 'X' || b1 == 'O') && (b2 == 'X' || b2 == 'O') && (b3 == 'X' || b3 == 'O') &&
     (b4 == 'X' || b4 == 'O') && (b5 == 'X' || b5 == 'O') && (b6 == 'X' || b6 == 'O') &&
     (b7 == 'X' || b7 == 'O') && (b8 == 'X' || b8 == 'O') && (b9 == 'X' || b9 == 'O')) {
-        document.getElementById('final').innerHTML = "It's a tie. Please hit reset button to play again!";
+        document.getElementById('final').innerHTML = "It's a tie. ";
+        document.getElementById('info').innerHTML = "Please hit RESET to play again."
         scoreboard_update_offline("tie");
     }
     else {
         if (flag == 1) {
-            console.log("x" + localStorage.getItem("name1"))
             document.getElementById('final').innerHTML = localStorage.getItem("name1") + "'s (X) turn";
         }
         else {
-            console.log("o" + localStorage.getItem("name2"))
             document.getElementById('final').innerHTML = localStorage.getItem("name2") + "'s (O) turn";
         }
     }
 
     function scoreboard_update_offline(param){
-        console.log("HEREEEE");
-        // if(localStorage.getItem("X") === null){
-        //     localStorage.setItem("X", 0)
-        // }
-        // if(localStorage.getItem("O") === null){
-        //     localStorage.setItem("O", 0)
-        // }
-        // if(localStorage.getItem("tie") === null){
-        //     localStorage.setItem("tie", 0)
-        // }
         if (param === "X"){
             let score = parseInt(localStorage.getItem("X"))+1;
             localStorage.setItem("X", score)
@@ -651,17 +663,6 @@ function enter_name(){
             }
     });
     get_names();
-
-    // document.getElementById("b1").style.display = "block";
-    // document.getElementById("b3").style.display = "block";
-    // document.getElementById("b4").style.display = "block";
-    // document.getElementById("b5").style.display = "block";
-    // document.getElementById("b6").style.display = "block";
-    // document.getElementById("b7").style.display = "block";
-    // document.getElementById("b8").style.display = "block";
-    // document.getElementById("b9").style.display = "block";
-    // document.getElementById("b2").style.display = "block";
-
     document.getElementById("first").style.display = "inline-flex";
     document.getElementById("second").style.display = "inline-flex";
     document.getElementById("third").style.display = "inline-flex";
@@ -673,6 +674,5 @@ function enter_name(){
 
     get_scores();
     get_names();
-    console.log("names added")
     localStorage.setItem("start_game", parseInt(localStorage.getItem("start_game"))+1);
 }
