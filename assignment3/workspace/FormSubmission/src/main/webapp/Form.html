@@ -1,0 +1,360 @@
+<html>
+  <head>
+    <title>Registration Page</title>
+    <style>
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 50px;
+    }
+	    .error {
+		    color: red;
+		    font-size: 15px;
+	    }
+	    .error-field{
+      border: 1px solid red;
+      
+     }
+     h1, #btn {
+		  text-align: center;
+		 /*  margin-top: 20 px; */
+	}
+	#buttons{
+	 /* margin-top: 20 px; */
+	font-size: 20px;
+	background-color: #d9534f;
+	}
+    </style>
+  </head>
+  <body>
+    <h1>Registration Form </h1>
+    <div class="form-container">
+    <form method = "post" action = "FormSubServlet" onsubmit="return validateForm()">
+      <fieldset>
+        <legend>Name</legend>
+	        <label for="first-name">First Name *:</label>
+	        <input type="text" id="first-name" name="first-name" required autofocus><br><br>
+	        <label for="middle-initial">Middle Initial:</label>
+	        <input type="text" id="middle-initial" name="middle-initial"><br><br>
+	        <label for="last-name">Last Name *:</label>
+	        <input type="text" id="last-name" name="last-name" required><br><br>
+	        <span id="name-error" class="error"></span>
+      </fieldset>
+      <fieldset>
+        <legend>Address</legend>
+	        <label for="address-line-1">Address Line 1 *: </label>
+	        <input type="text" id="address-line-1" name="address-line-1" required><br><br>
+	        <label for="address-line-2">Address Line 2:</label>
+	        <input type="text" id="address-line-2" name="address-line-2"><br><br>
+	        <label for="city">City *:</label>
+	        <input type="text" id="city" name="city" required><br><br>
+	        <label for="state">State *:</label>
+	        <input type="text" id="state" name="state" required><br><br>
+	        <label for="postal-code">Postal Code *:</label>
+	        <input type="text" id="postal-code" name="postal-code" placeholder = "M1M 1M1" required><br><br>
+	        <label for="country">Country *:</label>
+	        <input type="text" id="country" name="country" required><br><br>
+	      	<span id="address-error" class="error"></span>
+      </fieldset>
+      <fieldset>
+        <legend>Phone Number *</legend>
+	        <label for="mobile">Mobile:</label>
+	        <input type="text" id="mobile" name="mobile" placeholder = "999-999-9999"><br><br>
+	        <label for="work">Work:</label>
+	        <input type="text" id="work" name="work" placeholder = "999-999-9999"><br><br>
+	      	<span id="phonenum-error" class="error"></span>
+      </fieldset>
+      <fieldset>
+        <legend>Email</legend>
+	        <label for="email">Email *:</label>
+	        <input type="text" id="email" name="email" placeholder = "abc@abc.com" required><br><br>
+	        <span id="email-error" class="error"></span>
+      </fieldset>
+      <fieldset>
+        <legend>Contact Preference *</legend>
+	        <input type="radio" id="sms" name="contact-preference" value="sms" required>
+	        <label for="sms">SMS</label><br>
+	        <input type="radio" id="emailpref" name="contact-preference" value="email" required>
+	        <label for="emailpref">Email</label>
+	      	<span id="contactpref-error" class="error"></span>
+      </fieldset>
+      <fieldset>
+        <legend>Gender *</legend>
+	        <select id="gender" name="gender" required>
+	          <option value="">--Select One--</option>
+	          <option value="male">Male</option>
+	          <option value="female">Female</option>
+	          <option value="transgender">Transgender</option>
+       </select>
+  		<span id="gender-error" class="error"></span>
+       </fieldset>
+       <fieldset>
+       		<legend>Job Role</legend>
+	       		<label for="occupation">Job Role *:</label>
+	       		<input type = "text" id = "occupation" name = "occupation" required>
+       <span id="occupation-error" class="error"></span>
+       </fieldset>
+       <fieldset>
+       <legend>Joining date</legend>
+       		<label for="birthdaytime">Joining date *:</label>
+  			<input type="date" id="birthdaytime" name="birthdaytime" required>
+       <span id="birthdate-error" class="error"></span>
+       </fieldset>
+       <fieldset>
+       <legend>Credentials</legend>
+	       <label for="username">Username *:</label>
+		  <input type="text" id="username" name="username" required > <br><br>
+		
+		  <label for="password">Password *:</label>
+		  <input type="password" id="password" name="password" required> <br><br>
+		
+		  <label for="password2">Re-Type Password *:</label>
+		  <input type="password" id="password2" name="password2" required> <br><br>
+		  
+		  <span id="password-error" class="error"></span>
+	  </fieldset>
+	  <div id="btn">
+	  <input type = "submit" value = "Register" id = "buttons">
+       <input type="reset" value="Reset"  onclick="resetForm()" id = "buttons">
+	  </div>
+       
+       </form>
+       </div>
+       
+  <script>
+  function validateForm() {
+	 
+	  var firstName = document.getElementById("first-name").value;
+	  var middleName = document.getElementById("middle-initial").value;
+	  var lastName = document.getElementById("last-name").value;
+	  var email = document.getElementById("email").value;
+      var addressLine1 = document.getElementById("address-line-1").value;
+      var addressLine2 = document.getElementById("address-line-2").value;
+      var city = document.getElementById("city").value;
+      var state = document.getElementById("state").value;
+      var postalCode = document.getElementById("postal-code").value;
+      var country = document.getElementById("country").value;
+      var phone_mobile = document.getElementById("mobile").value;
+   	  var phone_work = document.getElementById("work").value;
+   	var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var password2 = document.getElementById("password2").value;
+    
+      var nameError = document.getElementById("name-error");
+      var addressError = document.getElementById("address-error"); 
+      var phone_error = document.getElementById("phonenum-error");
+      var emailError = document.getElementById("email-error");
+      var passwordError = document.getElementById("password-error");
+    	    			  
+      var addressLineRegex = /^[A-Za-z0-9\s,.-]+$/;
+      var postalcodeRegex = /^([A-Za-z]\d[A-Za-z] \d[A-Za-z]\d)$/;
+      var addressLineRegex2 = /^[A-Za-z0-9\s,.-]*$/;
+      var stateRegex = /^[A-Za-z\s]+$/;
+      var phoneNumRegex = /^\d{3}-\d{3}-\d{4}$/;
+	  var nameRegex = /^[a-zA-Z\s]+$/;
+	  var middlenameRegex = /^[a-zA-Z\s]*$/;
+	  var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    var passwordRegex = /^[a-zA-Z0-9!@#$%^&*]{6,}$/;
+    var usernameRegex = /^[a-zA-Z0-9_]{6,}$/;
+	  
+	  nameError.innerHTML = "";
+	  addressError.innerHTML = "";
+	  phone_error.innerHTML = "";
+	  emailError.innerHTML = "";
+	  passwordError.innerHTML = "";
+	  
+	  // Name validation
+	  if (!nameRegex.test(firstName)){
+		  nameError.innerHTML = "First Name should contain only alphabets.";
+		  /* document.getElementById("first-name").focus(); */
+		  document.getElementById("first-name").classList.remove("error-field");
+		  return false;
+	  }
+	  else{
+		  document.getElementById("first-name").classList.remove("error-field");
+	  }
+	  if (!middlenameRegex.test(middleName)){
+		  nameError.innerHTML = "Middle Name should contain only alphabets.";
+		  /* document.getElementById("middle-initial").focus(); */
+		  document.getElementById("middle-initial").classList.remove("error-field");
+		  return false;
+	  }
+	  else{
+		  document.getElementById("middle-initial").classList.remove("error-field");
+	  }
+	  if (!nameRegex.test(lastName)){
+		  nameError.innerHTML = "Last Name should contain only alphabets.";
+		  /* document.getElementById("last-name").focus(); */
+		  document.getElementById("last-name").classList.remove("error-field");
+		  return false;
+	  }
+	  else{
+		  document.getElementById("last-name").classList.remove("error-field");
+	  }
+	  
+	  // address validation
+	  if (!addressLineRegex.test(addressLine1)){
+		  addressError.innerHTML = "Address line 1 can only contain alphabets, numbers and special characters [,.-]."
+		  /* document.getElementById("address-line-1").focus(); */
+		  document.getElementById("address-line-1").classList.add("error-field");
+		  return false;
+	  } 
+	  else{
+		document.getElementById("address-line-1").classList.remove("error-field");
+	  }
+	   
+	  if (!addressLineRegex2.test(addressLine2)){
+		  addressError.innerHTML = "Address line 2 can only contain alphabets, numbers and special characters [,.-]."
+			  /* document.getElementById("address-line-2").focus(); */
+		  document.getElementById("address-line-2").classList.add("error-field");
+		  return false;
+	  }
+	  else{
+		  document.getElementById("address-line-2").classList.remove("error-field");
+	  }
+	  
+	  if (!stateRegex.test(city)){
+		  addressError.innerHTML = "City can only have alphabets."
+		  /* document.getElementById("city").focus(); */
+		  document.getElementById("city").classList.add("error-field");
+		  return false;
+	  }
+	  else{
+		  document.getElementById("city").classList.remove("error-field");
+	  }
+	  
+	  if (!stateRegex.test(state)){
+		  addressError.innerHTML = "State can only have alphabets."
+		  /* document.getElementById("state").focus(); */
+		  document.getElementById("state").classList.add("error-field");
+		  return false;
+	  } 
+	  else{
+		  document.getElementById("state").classList.remove("error-field");
+	  }
+	  
+	  if (!postalcodeRegex.test(postalCode)){
+		  addressError.innerHTML = "The pattern of postal code is incorrect."
+			  /* document.getElementById("postal-code").focus(); */
+		  document.getElementById("postal-code").classList.add("error-field");
+			  return false;
+	  }
+	  else{
+		  document.getElementById("postal-code").classList.remove("error-field");
+	  }
+	   if (!stateRegex.test(country)){
+		  addressError.innerHTML = "Country can only have alphabets."
+		  /* document.getElementById("country").focus(); */
+		  document.getElementById("country").classList.add("error-field");
+		  return false;
+	  } 
+	  else{
+		  document.getElementById("country").classList.remove("error-field");
+	  } 
+	  
+	  //phone 
+	  if (phone_mobile === "" && phone_work === ""){
+		  phone_error.innerHTML = "Enter atleast one number, either mobile or work.";
+			  /* document.getElementById("mobile").focus(); */
+			  document.getElementById("mobile").classList.add("error-field");
+			  document.getElementById("work").classList.add("error-field");
+		  return false
+	  }
+	  else{
+			 document.getElementById("mobile").classList.remove("error-field");
+			 document.getElementById("work").classList.remove("error-field");
+		 }
+	  
+	  if (phone_mobile!="" && !phoneNumRegex.test(phone_mobile)){
+		  phone_error.innerHTML = "Please follow the format for mobile number.";
+			  /* document.getElementById("mobile").focus(); */
+			  document.getElementById("mobile").classList.add("error-field");
+		  return false
+	  } 
+	  else{
+			 document.getElementById("mobile").classList.remove("error-field");
+		 }
+	  
+	  if (phone_work != "" && !phoneNumRegex.test(phone_work)){
+		  phone_error.innerHTML = "Please follow the format for work number.";
+			  /* document.getElementById("work").focus(); */
+			  document.getElementById("work").classList.add("error-field");
+		  return false
+	  } 
+	  else{
+			 document.getElementById("work").classList.remove("error-field");
+		 }
+	  
+	  
+	 // email 
+	 if (!emailRegex.test(email)){
+		 emailError.innerHTML = "Please write email address in correct format";
+		/*  document.getElementById("email").focus(); */
+		 document.getElementById("email").classList.add("error-field");
+		 return false;
+	 }
+	 else{
+		 document.getElementById("email").classList.remove("error-field");
+	 }
+	// Password validation
+	 
+    
+    if (!usernameRegex.test(username)) {
+    	passwordError.innerHTML = "Username should contain only alphabets, numbers, special characters [_], and have a minimum length of 6 characters.";
+    	/* document.getElementById("username").focus(); */
+    	document.getElementById("username").classList.add("error-field");
+    	return false;
+    }
+    else {
+    	document.getElementById("username").classList.remove("error-field");
+      }
+    if (!passwordRegex.test(password)) {
+      passwordError.innerHTML = "Password should contain only alphabets, numbers, special characters [!@#$%^&*], and have a minimum length of 6 characters.";
+      /* document.getElementById("password").focus(); */
+      document.getElementById("password").classList.add("error-field");
+      return false;
+    } 
+    else {
+    	document.getElementById("password").classList.remove("error-field");
+      }
+    if (password!=password2){
+    	passwordError.innerHTML = "Re-typed password does not match the password.";
+    	/* document.getElementById("password2").focus(); */
+    	document.getElementById("password2").classList.add("error-field");
+    	return false;
+    }
+    else {
+    	document.getElementById("password2").classList.remove("error-field");
+      } 
+    return true;
+  }
+  function resetForm() {
+	  document.getElementById("first-name").classList.remove("error-field");
+	  document.getElementById("middle-initial").classList.remove("error-field");
+	  document.getElementById("last-name").classList.remove("error-field");
+	  document.getElementById("address-line-1").classList.remove("error-field");
+	  document.getElementById("address-line-2").classList.remove("error-field");
+	  document.getElementById("state").classList.remove("error-field");
+	  document.getElementById("city").classList.remove("error-field");
+	  document.getElementById("country").classList.remove("error-field");
+	  document.getElementById("postal-code").classList.remove("error-field");
+	  document.getElementById("mobile").classList.remove("error-field");
+	  document.getElementById("email").classList.remove("error-field");
+	  document.getElementById("work").classList.remove("error-field");
+	  document.getElementById("password").classList.remove("error-field");
+	  document.getElementById("username").classList.remove("error-field");
+	  document.getElementById("password2").classList.remove("error-field");
+	  document.getElementById("name-error").innerHTML = "";
+	  document.getElementById("address-error").innerHTML = "";
+	  document.getElementById("phonenum-error").innerHTML = "";
+	  document.getElementById("email-error").innerHTML = "";
+	  document.getElementById("password-error").innerHTML = ""; 
+	  document.getElementById("occupation-error").innerHTML = "";  
+	  document.getElementById("birthdate-error").innerHTML = "";
+	  document.getElementById("gender-error").innerHTML = "";
+  }
+</script>
+</body>
+</html>
+       
