@@ -47,7 +47,7 @@
       font-size: 16px;
       line-height: 1.5;
       margin-bottom: 20px;
-      text-align: center;
+      text-align: left;
     }
     .book-details {
       font-size: 16px;
@@ -78,6 +78,7 @@
     .inline {
   display: inline;
  	margin: 0;		
+ 	
 }
   </style>
 </head>
@@ -99,12 +100,12 @@ HttpSession session2 = request.getSession();
 			%>
     <!-- <img class="book-cover" src="https://via.placeholder.com/300x450.png?text=Book+Cover" alt="Book Cover"> -->
     <h1 class="book-title" style="text-transform: uppercase;"><%=selectedbook.getName() %></h1>
-    <p class="book-author">by <%=selectedbook.getAuthor() %></p>
-    <p class="book-author">ISBN: <%=selectedbook.getIsbn() %></p>
-    <p class="book-description">About the book: <%=selectedbook.getDesc() %></p>
+    <p class="book-author">by <b><%=selectedbook.getAuthor() %></b></p>
+    <p class="book-author">ISBN: <b><%=selectedbook.getIsbn() %></b></p>
+    <p class="book-description">About the book: <b><%=selectedbook.getDesc() %></b></p>
 
-    <p class="inline book-description" > Number of available books: </p><p class= "inline" id = "count"><%=selectedbook.getCount() %> </p>
-    <p class="book-description"> Average Ratings: <%=selectedbook.getRatings() %> </p>
+    <p class="inline book-description" > Number of available books: </p><p class= "inline" id = "count"><b><%=selectedbook.getCount() %> </b></p>
+    <p class="book-description"> Average Ratings: <b><%=selectedbook.getRatings() %> </b></p>
     
     <button id = "purchaseBtn" onclick="purchaseThis(this)"> Purchase </button>
      <p id = "purchaseTxt"></p>

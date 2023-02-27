@@ -38,6 +38,22 @@
       input[type=submit]:hover {
         background-color: #45a049;
       }
+      
+      select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
 </style>
 </head>
 <body>
@@ -69,16 +85,25 @@
         <input type="text" id="lname" name="lname" class="form-control" required>
         
         <label for="email">Email</label>
-        <input type="text" id="email" name="email" class="form-control" required>
+        <input type="email" id="email" name="email" class="form-control" required>
 
         <label for="username">Username</label>
         <input type="text" id="username" name="username" class="form-control" required>
 
         <label for="password">Password</label>
-        <input type="text" id="password" name="password" class="form-control" required>
+        <input type="password" id="password" name="password" class="form-control" required>
         
         <label for="role">Role</label>
-        <input type="text" id="role" name="role" class="form-control" required>
+        <!-- <input type="text" id="role" name="role" class="form-control" required> -->
+        
+        <select id="role" name="role" required>
+    		<!-- <option value="">Select a Role</option> -->
+    		
+            	<option value="user">User</option>
+            	<option value="admin">Admin</option>
+            	
+		</select>
+        
 		<p id = "error">
 		</p>
 		<input type="hidden" name="page" value="addUser"/>

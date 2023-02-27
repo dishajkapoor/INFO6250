@@ -9,6 +9,17 @@
  <link rel="icon" href="book2.png" type="image/png">
  
 </head>
+<style>
+body {
+  background-image: url("books.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+   background-color: rgba(255, 255, 255, 0.1);
+   color: #FFFFFF; 
+  
+}
+</style>
 <body>
 
 	<ul>

@@ -41,6 +41,15 @@
         text-align: center;
         padding: 10px;
       }
+      body {
+  background-image: url("books.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+   background-color: rgba(255, 255, 255, 0.1);
+   /* color: #FFFFFF;  */
+  
+}
       /* .tab {
             padding: 10px;
             border: 1px solid #ccc;

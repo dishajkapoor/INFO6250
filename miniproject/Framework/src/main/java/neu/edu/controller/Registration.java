@@ -2,6 +2,9 @@ package neu.edu.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -13,7 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import neu.edu.dao.RegistrationDAO;
+import neu.edu.data.User;
 import neu.edu.data.UserRegistration;
+import neu.edu.database.DBConnector;
 
 /**
  * Servlet implementation class Register
@@ -54,11 +59,32 @@ public class Registration extends HttpServlet {
 		String email = request.getParameter("email");
 		
 		if (!password.equals(password2)) {
-			request.setAttribute("error", "Passwords donot match bro");
+			request.setAttribute("error", "Passwords do not match.");
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/registration.jsp");
 			rd.forward(request, response);
 		}
 		else {
+			PreparedStatement pst = null;
+			connection = DBConnector.getInstance().getConnection();
+			try {
+				pst = connection.prepareStatement("select * from user");
+				ResultSet rs = pst.executeQuery();
+		          ArrayList<User> users = new ArrayList<User>();
+		          while(rs.next()) {
+		        	  String username_db = rs.getString("username");
+		        	  if (username_db.equals(username)) {
+		        		  request.setAttribute("error", "Username already exists.");
+		      			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/registration.jsp");
+		      			rd.forward(request, response);
+		        	  }
+		          }
+					
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 			ServletContext application = request.getServletContext();
 			ArrayList<UserRegistration> userRegistration = (ArrayList<UserRegistration>) request.getAttribute("userRegistration");
 			if(userRegistration == null) {
