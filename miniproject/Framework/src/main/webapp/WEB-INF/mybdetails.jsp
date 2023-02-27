@@ -89,6 +89,11 @@ Button{
     Button:hover{
     background-color: #3e8e41; 
     }
+    .inline {
+  display: inline;
+ 	margin: 0;		
+ 	
+}
   </style>
 </head>
 <body>
@@ -99,7 +104,7 @@ Button{
 <li><a href="controller?action=viewmybooks">Back</a></li>
 	</ul>
 
-
+<br><br>
 <div class="container">
 <%
 HttpSession session2 = request.getSession();
@@ -111,10 +116,13 @@ HttpSession session2 = request.getSession();
     <!-- <img class="book-cover" src="https://via.placeholder.com/300x450.png?text=Book+Cover" alt="Book Cover"> -->
     <h1 class="book-title">Purchase Date: <%=selectedbook.getPurchase_date() %></h1>
     <p class="book-author">Due Date: <%=selectedbook.getDue_date() %></p>
-    <p class="book-author">Return Date: </p><p id = "returnDate"><%=selectedbook.getReturn_date() %></p>
+    <%-- <p class="book-author">Return Date: </p><p id = "returnDate"><%=selectedbook.getReturn_date() %></p> --%>
+    
+    <p class="inline book-author" style="text-align: center;"> Return Date: </p><p class= "inline" id = "returnDate"><%=selectedbook.getReturn_date() %> </p>
+    
     <!-- conole.log("return daeee"+ selectedbook.getReturn_date); -->
     <%-- <p class="book-description">About the book: <%=selectedbook.get() %></p> --%>
-   	
+   	<br><br>
     <p class="inline" > Number of available books: </p><p class= "inline" id = "count"><%=myselectedbook.getCount() %> </p>
     <p class="book-description"> Your Ratings: <%=selectedbook.getRatings() %> </p>
     <p> Average Ratings: <%=myselectedbook.getRatings() %></p>

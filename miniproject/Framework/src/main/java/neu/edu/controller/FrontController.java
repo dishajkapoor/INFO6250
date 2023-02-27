@@ -32,7 +32,7 @@ public class FrontController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("in fornt cntroelsdfkjlnsjkfdshvbdhgsvfghdavfgvsdzfhbdshzfn");
+//		System.out.println("in fornt cntroelsdfkjlnsjkfdshvbdhgsvfghdavfgvsdzfhbdshzfn");
 		String action = request.getParameter("action");
 //		System.out.println("action!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1" + action);
 		HttpSession session = request.getSession();
@@ -160,7 +160,7 @@ public class FrontController extends HttpServlet {
 			 * else if(action.equals("checkbook")) { dispatcher = "checkbook"; }
 			 */
 		 
-		 System.out.println("dispatcher" + dispatcher);
+//		 System.out.println("dispatcher" + dispatcher);
 		 
 		 RequestDispatcher rd = request.getRequestDispatcher(dispatcher);
 		 rd.forward(request, response);

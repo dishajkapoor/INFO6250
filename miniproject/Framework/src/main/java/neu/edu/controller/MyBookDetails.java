@@ -47,11 +47,11 @@ public class MyBookDetails extends HttpServlet {
 		
 		String isbn = (String) request.getAttribute("isbn");
 		/* session.setAttribute(, isbn) */
-		System.out.println("sjdfhbjhdsbjhbdsjbnds:::::::::::::::::::::::::" + isbn);
+//		System.out.println("sjdfhbjhdsbjhbdsjbnds:::::::::::::::::::::::::" + isbn);
 		for (MyBook mybook : mybooks) {
 			if(mybook.getIsbn() == Integer.parseInt(isbn)){
 				session.setAttribute("selectedBook", mybook);
-				System.out.println("oooooooooooooooooooooooooooooooooooooooooooooooo" + session.getAttribute("selectedBook"));
+//				System.out.println("oooooooooooooooooooooooooooooooooooooooooooooooo" + session.getAttribute("selectedBook"));
 			}
 		}
 		
@@ -66,7 +66,7 @@ public class MyBookDetails extends HttpServlet {
                     Book book = DataConvertors.toBook(doc);
                     if(book.getIsbn() == Integer.parseInt(isbn)) {
                     	session.setAttribute("myselectedbook", book);
-                    	System.out.println("ooooooooooooooooooooooooo.....................ooooooooooooooooooooooo" + session.getAttribute("myselectedbook"));
+//                    	System.out.println("ooooooooooooooooooooooooo.....................ooooooooooooooooooooooo" + session.getAttribute("myselectedbook"));
                     }
                 }
             }

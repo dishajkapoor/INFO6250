@@ -54,6 +54,15 @@ select:focus {
     border-color: #007bff;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
+body {
+  background-image: url("books.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+   background-color: rgba(255, 255, 255, 0.1);
+   /* color: #FFFFFF;  */
+  
+}
 </style>
 </head>
 <body>

@@ -106,6 +106,15 @@
       input[type=submit]:hover {
         background-color: #45a049;
       }
+      body {
+  background-image: url("books.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+   background-color: rgba(255, 255, 255, 0.1);
+   /* color: #FFFFFF;  */
+  
+}
   </style>
 </head>
 <body>
@@ -137,7 +146,7 @@ HttpSession session2 = request.getSession();
   </div> --%>
  
  <div class="container">
-      <!-- <h2>Update Email here</h2> -->
+      <h2>Book details</h2> 
       <form action = "controller?action=updateBook" method = "post">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" class="form-control" value= <%= selectedbook.getName() %>>

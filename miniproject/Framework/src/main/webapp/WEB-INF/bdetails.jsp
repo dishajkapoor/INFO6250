@@ -104,7 +104,7 @@ HttpSession session2 = request.getSession();
     <p class="book-author">ISBN: <b><%=selectedbook.getIsbn() %></b></p>
     <p class="book-description">About the book: <b><%=selectedbook.getDesc() %></b></p>
 
-    <p class="inline book-description" > Number of available books: </p><p class= "inline" id = "count"><b><%=selectedbook.getCount() %> </b></p>
+    <p class="inline book-description" > Number of available books: </p><p class= "inline" id = "count"><%=selectedbook.getCount() %> </p>
     <p class="book-description"> Average Ratings: <b><%=selectedbook.getRatings() %> </b></p>
     
     <button id = "purchaseBtn" onclick="purchaseThis(this)"> Purchase </button>

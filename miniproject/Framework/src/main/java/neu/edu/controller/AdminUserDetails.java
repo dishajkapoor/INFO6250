@@ -40,7 +40,7 @@ public class AdminUserDetails extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 //		String username = ;
-		System.out.println("username" + request.getAttribute("username"));
+//		System.out.println("username" + request.getAttribute("username"));
 		PreparedStatement pst = null;
 		connection = DBConnector.getInstance().getConnection();
 		HttpSession session = request.getSession();
